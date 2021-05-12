@@ -1,0 +1,21 @@
+.bg-mattblack {
+    background-color: #28282B;
+}
+
+.btnFull {
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.TableHeaderPointer {
+    cursor: pointer;
+}
+
+.TableHeaderPointer:hover{
+    background-color: #D3D3D3;
+}

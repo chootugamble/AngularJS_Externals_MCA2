@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/bootstrap.css">
+    <link rel="stylesheet" href="CSS/Custom.css">
+    <title>External Practice</title>
+</head>
+<body class="bg-mattblack">
+    <div ng-app="app" class="container">
+        <div ng-controller="MyController">
+            <br>
+            <br>
+            <table class="table table-dark">
+                <tr>
+                    <td><button ng-click='ShowForm()' class="btn btn-warning btnFull">View Form</button></td>
+                    <td><button ng-click='ShowTable()' class="btn btn-primary btnFull">View Data</button></td>
+                </tr>
+                <tr>
+                    <td colspan="2" ng-show="ShowXX">
+                        <form>
+                            <div class="form-group">
+                                <label for="Input1">Input1</label>
+                                <input type="text" class="form-control" ng-model="in_Input1" id="Input1" placeholder="Enter Input1">
+                            </div>
+                            <div class="form-group">
+                                <label for="Input2">Input2</label>
+                                <input type="text" class="form-control" ng-model="in_Input2" id="Input2" placeholder="Enter Input2">
+                            </div>
+                            <div class="form-group">
+                                <label for="Input3">Input3</label>
+                                <input type="text" class="form-control" ng-model="in_Input3" id="Input3" placeholder="Enter Input3">
+                            </div>
+                            <div class="form-group">
+                                <label for="Input4">Input4</label>
+                                <input type="text" class="form-control" ng-model="in_Input4" id="Input4" placeholder="Enter Input4">
+                            </div>
+                            <button ng-click='insertFUN()' class="btn btn-info btnFull">INSERT</button>
+                        </form>
+                    </td>
+
+                    <td colspan="2" ng-show="!ShowXX" class="text-dark">
+                        <table class="table table-bordered">
+                            <tr class="font-weight-bold text-center">
+                                <td ng-click="sortingFUN('arr_Input1')" class="TableHeaderPointer">Input1</td>
+                                <td ng-click="sortingFUN('arr_Input2')" class="TableHeaderPointer">Input2</td>
+                                <td ng-click="sortingFUN('arr_Input3')" class="TableHeaderPointer">Input3</td>
+                                <td ng-click="sortingFUN('arr_Input4')" class="TableHeaderPointer">Input4</td>
+                                <td>DELETE</td>
+                            </tr>
+                            <tr ng-repeat="x in ARRAY_VAR | orderBy: sortTypeVAR">
+                                <td>{{x.arr_Input1}}</td>
+                                <td>{{x.arr_Input2}}</td>
+                                <td>{{x.arr_Input3}}</td>
+                                <td>{{x.arr_Input4}}</td>
+                                <td><button ng-click='deleteFUN(x)' class="btn btn-danger">Delete</button><br></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script src="JS/angular.min.js"></script>
+    <script src="JS/Custom_Aungular.js"></script> 
+</body>
+</html>
