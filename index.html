@@ -6,65 +6,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/bootstrap.css">
     <link rel="stylesheet" href="CSS/Custom.css">
-    <title>External Practice</title>
+    <title>MCA2 - Externals 20MCA097</title>
 </head>
 <body class="bg-mattblack">
     <div ng-app="app" class="container">
         <div ng-controller="MyController">
             <br>
             <br>
-            <table class="table table-dark">
-                <tr>
-                    <td><button ng-click='ShowForm()' class="btn btn-warning btnFull">View Form</button></td>
-                    <td><button ng-click='ShowTable()' class="btn btn-primary btnFull">View Data</button></td>
-                </tr>
-                <tr>
-                    <td colspan="2" ng-show="ShowXX">
-                        <form>
-                            <div class="form-group">
-                                <label for="Input1">Input1</label>
-                                <input type="text" class="form-control" ng-model="in_Input1" id="Input1" placeholder="Enter Input1">
-                            </div>
-                            <div class="form-group">
-                                <label for="Input2">Input2</label>
-                                <input type="text" class="form-control" ng-model="in_Input2" id="Input2" placeholder="Enter Input2">
-                            </div>
-                            <div class="form-group">
-                                <label for="Input3">Input3</label>
-                                <input type="text" class="form-control" ng-model="in_Input3" id="Input3" placeholder="Enter Input3">
-                            </div>
-                            <div class="form-group">
-                                <label for="Input4">Input4</label>
-                                <input type="text" class="form-control" ng-model="in_Input4" id="Input4" placeholder="Enter Input4">
-                            </div>
-                            <button ng-click='insertFUN()' class="btn btn-info btnFull">INSERT</button>
-                        </form>
-                    </td>
+            <div ng-show="!ShowBool">
+                <table class="table table-dark">
+                    <tr class="font-weight-bold">
+                        <th ng-click="sortingFUN('st_ID')" class="TableHeaderPointer">ID</th>
+                        <th ng-click="sortingFUN('st_FNAME')" class="TableHeaderPointer">First Name</th>
+                        <th ng-click="sortingFUN('st_LNAME')" class="TableHeaderPointer">Last Name</th>
+                        <th ng-click="sortingFUN('st_MATH')" class="TableHeaderPointer">Maths</th>
+                        <th ng-click="sortingFUN('st_SCIENCE')" class="TableHeaderPointer">Science</th>
+                        <th ng-click="sortingFUN('st_ENGLISH')" class="TableHeaderPointer">English</th>
+                        <th ng-click="sortingFUN('st_TOTAL')" class="TableHeaderPointer">Total Marks</th>
+                        <th ng-click="sortingFUN('st_GRACING')" class="TableHeaderPointer">Gracing Required</th>
+                        <th>DELETE</td>
+                    </tr>
+                    <tr ng-repeat="x in Student_Result_Arr | orderBy: sortTypeVAR">
+                        <td>{{x.st_ID}}</td>
+                        <td>{{x.st_FNAME}}</td>
+                        <td>{{x.st_LNAME}}</td>
+                        <td>{{x.st_MATH}}</td>
+                        <td>{{x.st_SCIENCE}}</td>
+                        <td>{{x.st_ENGLISH}}</td>
+                        <td>{{x.st_TOTAL}}</td>
+                        <td>{{x.st_GRACING}}</td>
+                        <td><button ng-click='deleteFUN(x)' class="btn btn-danger">Delete</button><br></td>
+                    </tr>
+                </table>
+                <br>
+                <button ng-click='ShowInsert()' class="btn btn-success btnFull">Add New Record</button>
+            </div>
 
-                    <td colspan="2" ng-show="!ShowXX" class="text-dark">
-                        <table class="table table-bordered">
-                            <tr class="font-weight-bold text-center">
-                                <td ng-click="sortingFUN('arr_Input1')" class="TableHeaderPointer">Input1</td>
-                                <td ng-click="sortingFUN('arr_Input2')" class="TableHeaderPointer">Input2</td>
-                                <td ng-click="sortingFUN('arr_Input3')" class="TableHeaderPointer">Input3</td>
-                                <td ng-click="sortingFUN('arr_Input4')" class="TableHeaderPointer">Input4</td>
-                                <td>DELETE</td>
-                            </tr>
-                            <tr ng-repeat="x in ARRAY_VAR | orderBy: sortTypeVAR">
-                                <td>{{x.arr_Input1}}</td>
-                                <td>{{x.arr_Input2}}</td>
-                                <td>{{x.arr_Input3}}</td>
-                                <td>{{x.arr_Input4}}</td>
-                                <td><button ng-click='deleteFUN(x)' class="btn btn-danger">Delete</button><br></td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
+            <div ng-show="ShowBool" class="text-white">
+                <h3>New Student..</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="in_ID">ID</label>
+                        <input type="text" class="form-control" ng-model="in_ID" id="in_ID" placeholder="Enter ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="in_FNAME">First Name</label>
+                        <input type="text" class="form-control" ng-model="in_FNAME" id="in_FNAME" placeholder="Enter First Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="in_LNAME">Last Name</label>
+                        <input type="text" class="form-control" ng-model="in_LNAME" id="in_LNAME" placeholder="Enter Last Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="in_MATH">Maths Marks</label>
+                        <input type="number"  min="0" max="100" class="form-control" ng-model="in_MATH" id="in_MATH" placeholder="Enter Math Marks">
+                    </div>
+                    <div class="form-group">
+                        <label for="in_SCIENCE">Science Marks</label>
+                        <input type="number"  min="0" max="100" class="form-control" ng-model="in_SCIENCE" id="in_SCIENCE" placeholder="Enter Science Marks">
+                    </div>
+                    <div class="form-group">
+                        <label for="in_ENGLISH">English Marks</label>
+                        <input type="number"  min="0" max="100" class="form-control" ng-model="in_ENGLISH" id="in_ENGLISH" placeholder="Enter English Marks">
+                    </div>
+                    <br>
+                    <button ng-click='insertStudent()' class="btn btn-info btnFull">Submit</button>
+                    <br>
+                    <button ng-click='ShowTable()' class="btn btn-danger btnFull">Cancle</button>
+                </form>
+            </div>
+
         </div>
     </div>
 
     <script src="JS/angular.min.js"></script>
-    <script src="JS/Custom_Aungular.js"></script> 
+    <script src="JS/Custom_Aungular.js"></script>
 </body>
 </html>
